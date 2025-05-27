@@ -64,8 +64,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-5 items-center">
-            <Link to='' className='underline'>Register</Link>
-            <Link to='' >
+            <Link to='/register' className='underline'>Register</Link>
+            <Link to='/sing-in' >
                 <button className='btn btn-primary px-7 py-5'>Sing in</button>
             </Link>
       </div>

@@ -7,8 +7,8 @@ import { motion } from "motion/react"
 const Hero = () => {
     return (
         <section className="py-10 md:py-0">
-            <div className="container flex gap-6 flex-col justify-center md:justify-between sm:py-12 lg:py-24 lg:flex-row lg:justify-between" bis_skin_checked="1">
-                <div className="max-w-full flex-1 md:max-w-[60%] flex flex-col justify-center text-center rounded-sm lg:text-left" bis_skin_checked="1">
+            <div className="flex gap-6 flex-col justify-center md:justify-between sm:py-12 lg:py-24 lg:flex-row lg:justify-between" bis_skin_checked="1">
+                <div className="max-w-full flex-1 lg:max-w-[60%] flex flex-col justify-center text-center rounded-sm lg:text-left" bis_skin_checked="1">
                     
                     <h1 className="text-5xl font-bold leading-none sm:text-6xl">The
                         <motion.span
@@ -31,7 +31,7 @@ const Hero = () => {
                     </form>
                 </div>
 
-                <div className="flex-1 max-w-full md:max-w-[40%]" bis_skin_checked="1">
+                <div className="flex-1 max-w-full lg:max-w-[40%] flex flex-col items-center" bis_skin_checked="1">
                     <motion.img 
                     src={banner1}
                     animate = {{
