@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
 import registerLottie from '../../assets/registerLottie.json'
 import Lottie from 'lottie-react';
+import AuthContext from '../../Context/AuthContext';
 
 const Register = () => {
+    const {createUser} = useContext(AuthContext);
+
+    // Create user
+    const handleCreateUser = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const {email, password, ...userData} = Object.fromEntries(formData.entries());
+        console.log(userData);
+        
+        // Create User 
+        createUser(email, password)
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+            
+        }).catch((error) => {
+            console.log(error);
+            
+        })
+    }
+
+
     return (
         <div className=' relative flex items-center justify-center my-20 w-full'>
 
@@ -20,7 +44,7 @@ const Register = () => {
                 <div className="divider">OR continue with</div>
 
             {/* Form */}
-            <form className="card-body">
+            <form onSubmit={handleCreateUser} className="card-body">
                 <fieldset className="fieldset space-y-3">
                 
                 {/* Name */}
@@ -40,7 +64,7 @@ const Register = () => {
                 <input type="password" name='password' className="input w-full py-6" required placeholder="Password" />
 
                 <div><a className="link link-hover">Forgot password?</a></div>
-                <button className="btn btn-secondary mt-4 py-6">Submit & Register</button>
+                <button type='submit' className="btn btn-secondary mt-4 py-6">Submit & Register</button>
                 </fieldset>
             </form>
             <p className='text-center'>Already have an account? <Link className='text-primary font-medium' to='/sing-in'>Sing in</Link></p>
