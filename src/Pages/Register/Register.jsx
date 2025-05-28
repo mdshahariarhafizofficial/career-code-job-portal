@@ -40,6 +40,7 @@ const Register = () => {
     }
 
 
+
     return (
         <div className=' relative flex items-center justify-center my-20 w-full'>
 

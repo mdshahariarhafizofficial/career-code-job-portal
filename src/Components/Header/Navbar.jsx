@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../../assets/logo.png'
+import AuthContext from '../../Context/AuthContext';
+import { FiLogOut } from 'react-icons/fi';
+// import toast from 'react-hot-toast';
 const Navbar = () => {
+    const {user, signOutUser} = useContext(AuthContext);
+    const handleSingOUt = () => {
+      signOutUser()
+    }
+
     const menuLinks = <>
             <li>
               <NavLink to="/" className={
@@ -64,10 +72,24 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-5 items-center">
-            <Link to='/register' className='underline'>Register</Link>
-            <Link to='/sing-in' >
-                <button className='btn btn-primary px-7 py-5'>Sing in</button>
-            </Link>
+            {
+              user ?
+              <>
+                <div className="avatar avatar-online">
+                  <div className="w-14 rounded-full">
+                    <img src={user? user.photoURL : '' } />
+                  </div>
+                </div>
+                <button onClick={handleSingOUt} className='btn btn-secondary py-5'> <FiLogOut size={22}></FiLogOut> Sing Out</button>
+              </>
+              :
+              <>
+              <Link to='/register' className='underline'>Register</Link>
+              <Link to='/sing-in' >
+                  <button className='btn btn-primary px-7 py-5'>Sing in</button>
+              </Link>
+              </>
+            }
       </div>
     </div>
   );
