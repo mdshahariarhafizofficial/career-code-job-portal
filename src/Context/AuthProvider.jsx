@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../Firebase/firebase.config';
 import { signOut } from "firebase/auth";
 import toast from 'react-hot-toast';
@@ -13,6 +13,12 @@ const [loading, setLoading] = useState(true);
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    // Sing in User
+    const signInUser = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     // Get current User
@@ -46,6 +52,7 @@ const [loading, setLoading] = useState(true);
         loading,
         setLoading,
         signOutUser,
+        signInUser,
     }
 
     return (

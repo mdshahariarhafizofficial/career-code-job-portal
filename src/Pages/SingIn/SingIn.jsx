@@ -1,9 +1,30 @@
 import Lottie from 'lottie-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
 import loginLottie from '../../assets/loginLottie.json'
+import AuthContext from '../../Context/AuthContext';
+import toast from 'react-hot-toast';
 
 const SingIn = () => {
+    const { signInUser, setUser } = useContext(AuthContext);
+    // Sign in user
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const {email, password} = Object.fromEntries(formData.entries());
+
+        // Sign In
+        signInUser(email, password)
+        .then((result)=>{
+            setUser(result.user)
+            toast.success('Sign In Successful!')
+        })
+        .catch((error)=>{
+            toast.error(error.message)
+        })
+    }
+
     return (
         <div className=' relative flex items-center justify-center my-20 w-full'>
 
@@ -20,7 +41,7 @@ const SingIn = () => {
                 <div className="divider">OR continue with</div>
 
             {/* Form */}
-            <form className="card-body">
+            <form onSubmit={handleSignIn} className="card-body">
                 <fieldset className="fieldset space-y-3">
                 
                 
@@ -33,7 +54,7 @@ const SingIn = () => {
                 <input type="password" name='password' className="input w-full py-6" required placeholder="Password" />
 
                 <div><a className="link link-hover">Forgot password?</a></div>
-                <button className="btn btn-secondary mt-4 py-6">Submit & Register</button>
+                <button type='submit' className="btn btn-secondary mt-4 py-6">Submit & Register</button>
                 </fieldset>
             </form>
             <p className='text-center'>Don't have an Account? <Link className='text-primary font-medium' to='/sing-in'>Register Now!</Link></p>
