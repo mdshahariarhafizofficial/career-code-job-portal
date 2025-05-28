@@ -3,9 +3,12 @@ import { Link } from 'react-router';
 import registerLottie from '../../assets/registerLottie.json'
 import Lottie from 'lottie-react';
 import AuthContext from '../../Context/AuthContext';
+import { updateProfile } from 'firebase/auth';
+import { auth } from '../../Firebase/firebase.config';
+import toast from 'react-hot-toast';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, setUser} = useContext(AuthContext);
 
     // Create user
     const handleCreateUser = (e) => {
@@ -13,17 +16,26 @@ const Register = () => {
         const form = e.target;
         const formData = new FormData(form);
         const {email, password, ...userData} = Object.fromEntries(formData.entries());
-        console.log(userData);
+        console.log({email, ...userData});
         
         // Create User 
         createUser(email, password)
         .then((result) => {
             const user = result.user;
-            console.log(user);
-            
+            const {name, photo} = userData;
+
+            updateProfile(auth.currentUser, {
+                displayName: name,
+                 photoURL: photo,
+            }).then(() => {
+               setUser({...user, displayName: name, photoURL: photo,})
+               toast.success('Registration Successful!') 
+            }).catch(() => {
+                setUser(user)
+            })
         }).catch((error) => {
             console.log(error);
-            
+            toast.error(error.message)
         })
     }
 
