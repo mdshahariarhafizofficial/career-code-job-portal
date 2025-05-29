@@ -46,10 +46,10 @@ const Hero = () => {
                     <motion.img 
                     src={banner2} 
                     animate = {{
-                        x: [100, 250, 100]
+                        x: [20, 100, 20]
                     }}
                     transition={{
-                        duration: 15,
+                        duration: 10,
                         repeat: Infinity
                     }}
                     alt="" className="object-contain

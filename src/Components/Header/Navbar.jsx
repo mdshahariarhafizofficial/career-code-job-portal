@@ -77,7 +77,7 @@ const Navbar = () => {
               <>
                 <div className="avatar avatar-online">
                   <div className="w-14 rounded-full">
-                    <img src={user? user.photoURL : '' } />
+                    <img src={user? user.photoURL : '' } referrerPolicy='no-referrer' />
                   </div>
                 </div>
                 <button onClick={handleSingOUt} className='btn btn-secondary py-5'> <FiLogOut size={22}></FiLogOut> Sing Out</button>

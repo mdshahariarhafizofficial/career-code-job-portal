@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
 import { auth } from '../Firebase/firebase.config';
 import { signOut } from "firebase/auth";
 import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthProvider = ({children}) => {
 const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true);
 
+const googleProvider = new GoogleAuthProvider();
     // Create User
     const createUser = (email, password) => {
         setLoading(true)
@@ -19,6 +21,17 @@ const [loading, setLoading] = useState(true);
     const signInUser = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    // Sign In With Gmail
+    const googleSignIn = () => {
+        signInWithPopup(auth, googleProvider)
+        .then(() => {
+            toast.success('Sign in Successful!')
+        })
+        .catch((error) => {
+            toast.error(error.message)
+        })
     }
 
     // Get current User
@@ -53,6 +66,7 @@ const [loading, setLoading] = useState(true);
         setLoading,
         signOutUser,
         signInUser,
+        googleSignIn,
     }
 
     return (
