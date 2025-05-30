@@ -3,9 +3,10 @@ import { CiLocationOn } from 'react-icons/ci';
 import { GiMoneyStack } from 'react-icons/gi';
 import { IoBriefcaseOutline } from 'react-icons/io5';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
+import { Link } from 'react-router';
 
 const JobCard = ({job}) => {
-    const {title, salaryRange, requirements, location, jobType, description, company_logo, company, applicationDeadline} = job; 
+    const {title, _id, salaryRange, requirements, location, jobType, description, company_logo, company, applicationDeadline} = job; 
     
     return (
         <div className="card bg-[#f8faff] shadow-sm border border-[#e0e6f7]">
@@ -30,13 +31,6 @@ const JobCard = ({job}) => {
             </div>
             <p className='text-accent font-medium'>{description}</p>
             <div className="card-actions">
-                <div>
-                    {
-                        requirements.map((req, i) => 
-                            <div key={i} className="badge badge-outline mr-2 mb-2">{req}</div>
-                        )
-                    }
-                </div>
                 <div className='mt-2'>
                     <div>
                         <h2 className='flex gap-1 items-center text-primary font-bold text-base uppercase'>{
@@ -47,9 +41,20 @@ const JobCard = ({job}) => {
                         }</h2>
                     </div>
                 </div>
+
+                <div>
+                    {
+                        requirements.map((req, i) => 
+                            <div key={i} className="badge badge-outline mr-2 mb-2">{req}</div>
+                        )
+                    }
+                </div>
+
             </div>
                     <div className='mt-3 flex justify-end'>
-                        <button className='btn btn-outline border-2 border-primary'>Apply Now</button>
+                        <Link to={`/jobs/${_id}`}>
+                            <button className='btn btn-outline border-2 border-primary'>Show Details</button>
+                        </Link>
                     </div>
         </div>
         </div>
