@@ -1,14 +1,48 @@
 import React, { useContext } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useParams } from 'react-router';
 import { IoBriefcaseOutline, IoMailUnreadOutline } from 'react-icons/io5';
 import { MdOutlineCalendarMonth,  MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 import AuthContext from '../../Context/AuthContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
     const {user} = useContext(AuthContext);
     const job = useLoaderData(); 
-
+    const {id: jobId} = useParams();
     const {title, _id, jobType, company, applicationDeadline, company_logo } = job;
+
+
+    // Handle Job Apply
+    const handleJobApply = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const applicantInfo = Object.fromEntries(formData.entries());
+        console.log({ jobId ,...applicantInfo });
+        const application = {
+            jobId, ...applicantInfo
+        }
+        
+        // Send Data to DB
+        axios.post('http://localhost:8000/applications', application)
+        .then(res => {
+            if (res.data.insertedId) {
+                Swal.fire({
+                icon: "success",
+                title: "Your Application has been submitted!",
+                showConfirmButton: false,
+                timer: 1500
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);  
+        })
+        form.reset();
+    }
+
     return (
         <div className='max-w-[880px] mx-auto border-2 border-gray-100 p-5 md:p-10 rounded-xl mb-20 mt-10'>
             <h2 className='text-secondary text-center font-bold text-5xl'>Apply For This Job</h2>
@@ -46,7 +80,7 @@ const JobApply = () => {
                 <h2 className='text-primary text-center font-bold text-3xl'>Job Application</h2>
                 <div className='divider'></div>
 
-            <form className="card-body pt-0">
+            <form onSubmit={handleJobApply} className="card-body pt-0">
                 <fieldset className="fieldset space-y-3">
                 
                 
