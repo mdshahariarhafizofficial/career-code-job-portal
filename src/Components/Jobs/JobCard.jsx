@@ -53,7 +53,7 @@ const JobCard = ({job}) => {
             </div>
                     <div className='mt-3 flex justify-end'>
                         <Link to={`/jobs/${_id}`}>
-                            <button className='btn btn-outline border-2 border-primary'>Show Details</button>
+                            <button onClick={()=> window.scrollTo(0,1)} className='btn btn-outline border-2 border-primary'>Show Details</button>
                         </Link>
                     </div>
         </div>

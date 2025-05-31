@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import metImg from '../../assets/met.png'
 import { IoBriefcaseOutline, IoMailUnreadOutline } from 'react-icons/io5';
 import { MdOutlineCalendarMonth, MdOutlineVerified } from 'react-icons/md';
@@ -26,9 +26,11 @@ const JobDetails = () => {
                 </div>
 
                 <div>
+                    <Link to={`/job-apply/${_id}`}>
                     <button className='btn btn-primary px-10 text-lg font-light py-6 flex items-center'>
                         <MdOutlineVerified size={25}></MdOutlineVerified>
                         Apply Now</button>
+                    </Link>
                 </div>
             </div>
 
@@ -168,9 +170,11 @@ const JobDetails = () => {
                 </div>
 
                 <div>
+                    <Link to={`/job-apply/${_id}`}>
                     <button className='btn btn-primary px-10 text-lg font-light py-6 flex items-center'>
                         <MdOutlineVerified size={25}></MdOutlineVerified>
                         Apply Now</button>
+                    </Link>
                 </div>
             </div>
                 
