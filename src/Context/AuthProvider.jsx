@@ -10,6 +10,7 @@ const AuthProvider = ({children}) => {
 const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true);
 
+
 const googleProvider = new GoogleAuthProvider();
     // Create User
     const createUser = (email, password) => {
@@ -25,13 +26,7 @@ const googleProvider = new GoogleAuthProvider();
 
     // Sign In With Gmail
     const googleSignIn = () => {
-        signInWithPopup(auth, googleProvider)
-        .then(() => {
-            toast.success('Sign in Successful!')
-        })
-        .catch((error) => {
-            toast.error(error.message)
-        })
+        return signInWithPopup(auth, googleProvider)
     }
 
     // Get current User
