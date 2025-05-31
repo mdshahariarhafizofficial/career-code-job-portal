@@ -17,12 +17,17 @@ const Navbar = () => {
                     isActive? "border-b-2 border-primary rounded-none text-primary" : ""
                 }>Home</NavLink>
             </li>
-            <li>
-              <NavLink to="/my-profile" className={
-                ({isActive}) => 
-                    isActive? "border-b-2 border-primary rounded-none text-primary" : ""
-                }>My Profile</NavLink>
-            </li>
+            {
+              user &&
+              <>
+                <li>
+                  <NavLink to="/my-applications" className={
+                    ({isActive}) => 
+                        isActive? "border-b-2 border-primary rounded-none text-primary" : ""
+                    }>My Applications</NavLink>
+                </li>
+              </>
+            }
             <li>
               <NavLink to="/contact-us" className={
                 ({isActive}) => 

@@ -7,6 +7,7 @@ import JobDetails from "../Pages/JobDetails/JobDetails";
 import PrivateRoute from "./PrivateRoute";
 import Loading from "../Pages/Loading/Loading";
 import JobApply from "../Pages/JobApply/JobApply";
+import MyApplications from "../Pages/MyApplications/MyApplications";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><JobApply></JobApply></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:8000/jobs/${params.id}`),
                 hydrateFallbackElement: <Loading></Loading>
+            },
+            {
+                path: '/my-applications',
+                Component: MyApplications,
             }
         ]
     }
