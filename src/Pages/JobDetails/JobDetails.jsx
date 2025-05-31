@@ -11,7 +11,7 @@ const JobDetails = () => {
     const job = useLoaderData();
     console.log(job);
     
-    const {title, _id, salaryRange, requirements, location, jobType, description, company, applicationDeadline, category, hr_name, hr_email, responsibilities } = job;
+    const {title, _id, salaryRange, requirements, location, jobType, description, company, applicationDeadline, category, hr_name, hr_email, responsibilities, company_logo } = job;
     
     return (
         <div className='max-w-[880px] mx-auto border-2 border-gray-100 p-5 rounded-xl mb-20 mt-10'>
@@ -86,11 +86,11 @@ const JobDetails = () => {
                             <p className='flex items-center gap-3 text-accent font-medium'>
                             <LuNotebookText size={22}></LuNotebookText>
                                 Requirements : </p>
-                            <p className='text-secondary font-semibold'>
+                            <div className='text-secondary font-semibold'>
                                 {
                                     requirements.map((req, i) => <p key={i}>{i+1}. {req}</p>)
                                 }
-                            </p>
+                            </div>
                         </div>
 
                     </div>
@@ -140,11 +140,11 @@ const JobDetails = () => {
                             <p className='flex items-center gap-3 text-accent font-medium'>
                             <PiHandHeart size={22}></PiHandHeart>
                                 Responsibilities :</p>
-                            <p className='text-secondary font-semibold'>
+                            <div className='text-secondary font-semibold'>
                                 {
                                     responsibilities.map((req, i ) => <p key={i}>{i+1}. {req}</p>)
                                 }
-                            </p>
+                            </div>
                         </div>
 
                     </div>
@@ -160,6 +160,19 @@ const JobDetails = () => {
                 <div className="divider"></div>
                 <p className='text-accent'>{description}</p>
                 <div className="divider"></div>
+                
+            <div className='flex justify-between my-6 items-center'>
+                <div className='space-y-2 flex items-center gap-1'>
+                    <img src={company_logo} alt="" />
+                    <h2 className='text-4xl font-bold text-secondary'>{company}</h2>                   
+                </div>
+
+                <div>
+                    <button className='btn btn-primary px-10 text-lg font-light py-6 flex items-center'>
+                        <MdOutlineVerified size={25}></MdOutlineVerified>
+                        Apply Now</button>
+                </div>
+            </div>
                 
             </div>
 
