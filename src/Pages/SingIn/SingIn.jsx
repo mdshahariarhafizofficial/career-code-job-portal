@@ -54,7 +54,7 @@ const SingIn = () => {
                 <input type="password" name='password' className="input w-full py-6" required placeholder="Password" />
 
                 <div><a className="link link-hover">Forgot password?</a></div>
-                <button type='submit' className="btn btn-secondary mt-4 py-6">Submit & Register</button>
+                <button type='submit' className="btn btn-secondary mt-4 py-6">Submit & Sing In</button>
                 </fieldset>
             </form>
             <p className='text-center'>Don't have an Account? <Link className='text-primary font-medium' to='/sing-in'>Register Now!</Link></p>
