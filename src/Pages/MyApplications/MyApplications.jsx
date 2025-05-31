@@ -10,7 +10,8 @@ const MyApplications = () => {
 
     return (
         <div>
-            <h1>My Applications Page</h1>
+            <h2 className='text-primary text-center font-bold text-4xl my-5'>My Applications</h2>
+            <div className='divider'></div>
             <Suspense fallback={<Loading></Loading>}>
                 <JobsTable 
                 fetchMyJobs={fetchMyJobs(user?.email)}>
