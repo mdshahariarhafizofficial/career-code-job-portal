@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router';
 import logo from '../../assets/logo.png'
 import AuthContext from '../../Context/AuthContext';
 import { FiLogOut } from 'react-icons/fi';
+import Loading from '../../Pages/Loading/Loading';
 // import toast from 'react-hot-toast';
 const Navbar = () => {
     const {user, signOutUser} = useContext(AuthContext);
@@ -26,14 +27,14 @@ const Navbar = () => {
                         isActive? "border-b-2 border-primary rounded-none text-primary" : ""
                     }>My Applications</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/add-job" className={
+                    ({isActive}) => 
+                        isActive? "border-b-2 border-primary rounded-none text-primary" : ""
+                    }>Add Job</NavLink>
+                </li>
               </>
             }
-            <li>
-              <NavLink to="/contact-us" className={
-                ({isActive}) => 
-                    isActive? "border-b-2 border-primary rounded-none text-primary" : ""
-                }>Contact Us</NavLink>
-            </li>
     </>
   return (
     <div className="navbar py-5 lg:px-0 px-2">
