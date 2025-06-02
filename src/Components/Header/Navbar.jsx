@@ -18,6 +18,8 @@ const Navbar = () => {
                     isActive? "border-b-2 border-primary rounded-none text-primary" : ""
                 }>Home</NavLink>
             </li>
+
+            {/* Private  */}
             {
               user &&
               <>
@@ -32,6 +34,12 @@ const Navbar = () => {
                     ({isActive}) => 
                         isActive? "border-b-2 border-primary rounded-none text-primary" : ""
                     }>Add Job</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/my-posted-jobs" className={
+                    ({isActive}) => 
+                        isActive? "border-b-2 border-primary rounded-none text-primary" : ""
+                    }>My Posted Jobs</NavLink>
                 </li>
               </>
             }
