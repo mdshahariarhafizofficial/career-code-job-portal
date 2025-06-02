@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { use } from 'react';
+import AuthContext from '../../Context/AuthContext';
 
 const AddJob = () => {
+    const {user} = use(AuthContext);
     return (
         <div className='max-w-[880px] mx-auto border-2 border-gray-100 p-5 md:p-10 rounded-xl mb-20 mt-10'>
             <div>
@@ -98,51 +100,66 @@ const AddJob = () => {
 
                     {/* Step-4 */}
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
-                        <label className="label">Company Name</label>
-                        <input type="text"
-                        className="input w-full mb-3"
-                        name='company'
-                        placeholder="Company Name" />
+                        <label className="label">Requirements</label>
+                        <textarea type="text"
+                        className="textarea w-full mb-3"
+                        name='requirements'
+                        placeholder="Requirements (Separate by comma)" />
 
-                        <label className="label">Job Title</label>
-                        <input 
+                        <label className="label">Responsibilities</label>
+                        <textarea 
                         type="text" 
-                        className="input w-full mb-3"
-                        name='title' 
-                        placeholder="Job Title" />
+                        className="textarea w-full mb-3"
+                        name='responsibilities' 
+                        placeholder="Responsibilities (Separate by comma)" />
 
-                        <label className="label">Location</label>
-                        <input 
-                        type="text" 
-                        className="input w-full mb-3"
-                        name='location' 
-                        placeholder="Location" />
                     </fieldset>
 
                     {/* Step-5 */}
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
-                        <label className="label">Company Name</label>
+                        <label className="label">Application Deadline</label>
+                        <input type="date"
+                        className="input w-full mb-3"
+                        name='applicationDeadline'
+                        placeholder="Application Deadline" />
+
+                        <label className="label">Company Logo</label>
+                        <input 
+                        type="url" 
+                        className="input w-full mb-3"
+                        name='company_logo' 
+                        placeholder="company logo URL" />
+
+                        <label className="label">Description</label>
+                        <textarea 
+                        type="text" 
+                        className="textarea w-full mb-3"
+                        name='description' 
+                        placeholder="Description" />
+                    </fieldset>
+        
+
+                    {/* Step-5 */}
+                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                        <legend>Hr Info</legend>
+                        <label className="label">Hr Name</label>
                         <input type="text"
+                        defaultValue={user?.displayName}
                         className="input w-full mb-3"
-                        name='company'
-                        placeholder="Company Name" />
+                        name='hr_name'
+                        placeholder="Hr name" />
 
-                        <label className="label">Job Title</label>
+                        <label className="label">Hr Email</label>
                         <input 
-                        type="text" 
+                        type="email" 
+                        defaultValue={user?.email}
                         className="input w-full mb-3"
-                        name='title' 
-                        placeholder="Job Title" />
+                        name='hr_email' 
+                        placeholder="Hr Email" />
 
-                        <label className="label">Location</label>
-                        <input 
-                        type="text" 
-                        className="input w-full mb-3"
-                        name='location' 
-                        placeholder="Location" />
                     </fieldset>
 
-
+                    <input type="submit" className='btn w-full btn-secondary' value="Submit" />
                 </form>
             </div>
 
