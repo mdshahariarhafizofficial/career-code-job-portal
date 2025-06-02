@@ -3,6 +3,25 @@ import AuthContext from '../../Context/AuthContext';
 
 const AddJob = () => {
     const {user} = use(AuthContext);
+    
+    // Handle Add Jobs
+    const handleAddJob = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        // Process Form Data
+        const {min, max, currency, requirements, responsibilities, ...newJob} = data;
+
+        console.log(newJob);
+        newJob.salaryRange = {min, max, currency};
+        newJob.requirements = requirements.split(',').map(req => req.trim());
+
+        newJob.responsibilities = responsibilities.split(',').map(res => res.trim());
+        newJob.status = "active";
+        
+    }
+
     return (
         <div className='max-w-[880px] mx-auto border-2 border-gray-100 p-5 md:p-10 rounded-xl mb-20 mt-10'>
             <div>
@@ -11,7 +30,7 @@ const AddJob = () => {
             </div>
 
             <div>
-                <form className='space-y-6'>
+                <form onSubmit={handleAddJob} className='space-y-6'>
 
                     {/* Step-1 */}
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
@@ -43,9 +62,9 @@ const AddJob = () => {
                         <label className="label">Job Type</label>
                         <div className="filter mb-4">
                         <input className="btn filter-reset" type="radio" name="jobType" aria-label="All"/>
-                        <input className="btn" type="radio" name="jobType" aria-label="On-site"/>
-                        <input className="btn" type="radio" name="jobType" aria-label="Remote"/>
-                        <input className="btn" type="radio" name="jobType" aria-label="Hybrid"/>
+                        <input className="btn" type="radio" value="On-site" name="jobType" aria-label="On-site"/>
+                        <input className="btn" type="radio" value="Remote" name="jobType" aria-label="Remote"/>
+                        <input className="btn" type="radio" value="Hybrid" name="jobType" aria-label="Hybrid"/>
                         </div>
                         
                         <label className="label">Job Category</label>                       
@@ -139,7 +158,7 @@ const AddJob = () => {
                     </fieldset>
         
 
-                    {/* Step-5 */}
+                    {/* Step-6 */}
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                         <legend>Hr Info</legend>
                         <label className="label">Hr Name</label>
