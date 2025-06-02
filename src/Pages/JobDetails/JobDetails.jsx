@@ -165,7 +165,7 @@ const JobDetails = () => {
                 
             <div className='flex justify-between my-6 items-center'>
                 <div className='space-y-2 flex items-center gap-1'>
-                    <img src={company_logo} alt="" />
+                    <img className='w-20 rounded-xl' src={company_logo} alt="" />
                     <h2 className='text-4xl font-bold text-secondary'>{company}</h2>                   
                 </div>
 

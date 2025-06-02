@@ -1,5 +1,7 @@
 import React, { use } from 'react';
 import AuthContext from '../../Context/AuthContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddJob = () => {
     const {user} = use(AuthContext);
@@ -19,7 +21,22 @@ const AddJob = () => {
 
         newJob.responsibilities = responsibilities.split(',').map(res => res.trim());
         newJob.status = "active";
-        
+
+        // Send data to DB
+        axios.post('http://localhost:8000/jobs', newJob)
+        .then(res => {
+            if (res.data.insertedId) {
+                Swal.fire({
+                icon: "success",
+                title: "Your Job has been Added!",
+                showConfirmButton: false,
+                timer: 1500
+                });
+            }           
+        }).catch(error => {
+            console.log(error);
+        })
+        form.reset();
     }
 
     return (
