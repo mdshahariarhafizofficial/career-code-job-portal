@@ -1,4 +1,5 @@
 import React, { use } from 'react';
+import { Link } from 'react-router';
 
 const MyPostedJobsTable = ({fetchMyPostedJobs}) => {
     const myJobs = use(fetchMyPostedJobs);
@@ -16,6 +17,7 @@ const MyPostedJobsTable = ({fetchMyPostedJobs}) => {
                     <th>Job</th>
                     <th>hr_email</th>
                     <th>Deadline</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,9 @@ const MyPostedJobsTable = ({fetchMyPostedJobs}) => {
                             <td>{job.title}</td>
                             <td>{job.hr_email}</td>
                             <td>{job.applicationDeadline}</td>
+                            <td>
+                                <Link className='text-primary' to={`/applications/${job._id}`}>View Application</Link>
+                            </td>
                         </tr>
                     )
                 }
