@@ -36,16 +36,20 @@ const googleProvider = new GoogleAuthProvider();
             setUser(currentUser)
             console.log(currentUser);
             setLoading(false);
+            // Jwt 
             if (currentUser?.email) {
-                const userInfo = {email: currentUser?.email};
-                axios.post('http://localhost:8000/jwt', userInfo)
-                .then(res => {
-                    console.log(res.data.token);
+                axios.post('http://localhost:8000/jwt', {
+                    user : currentUser?.email
                 })
-                .catch(error => {
+                .then(res => {
+                    localStorage.setItem('token', res.data.token)
+                    
+                }).catch(error  => {
                     console.log(error);
+                    
                 })
             }
+
         } )
         return () => {
             unSubscribe();
