@@ -23,7 +23,7 @@ const JobsTable = ({fetchMyJobs}) => {
 
                 {/* row 1 */}
                 {
-                    myApplications.map((application, index) => 
+                    myApplications?.map((application, index) => 
                         <tr key={application._id}>
                             <th>
                                 {index+1}

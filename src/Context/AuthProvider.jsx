@@ -49,6 +49,9 @@ const googleProvider = new GoogleAuthProvider();
                     
                 })
             }
+            else{
+                localStorage.removeItem('token')
+            }
 
         } )
         return () => {
@@ -61,6 +64,7 @@ const googleProvider = new GoogleAuthProvider();
         signOut(auth)
         .then(() => {
             toast.success('Sign Out Successful!')
+            localStorage.removeItem('token')
         })
         .catch((error) => {
             toast.error(error.message)
