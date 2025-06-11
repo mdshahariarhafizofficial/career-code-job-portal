@@ -40,9 +40,14 @@ const googleProvider = new GoogleAuthProvider();
             if (currentUser?.email) {
                 axios.post('http://localhost:8000/jwt', {
                     user : currentUser?.email
-                })
+                }, {
+                    withCredentials: true,
+                }
+            )
                 .then(res => {
-                    localStorage.setItem('token', res.data.token)
+                    // localStorage.setItem('token', res.data.token)
+                    console.log(res.data);
+                    
                     
                 }).catch(error  => {
                     console.log(error);
